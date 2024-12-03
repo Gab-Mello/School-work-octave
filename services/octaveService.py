@@ -1,20 +1,17 @@
 import subprocess
 
-def generateGraphs():# Caminho para o Octave completo (não CLI)
+def generateGraphs(data):
+
     octave_terminal_path = "/usr/bin/octave"
 
-    # Caminho para o script Octave
-    octave_script_path = "./octave_script/otavio.m"
-
-    # Comando para executar o script no terminal completo
-    command = [octave_terminal_path, "--eval", f"addpath('./octave_script/'); otavio;"]
+    command = [octave_terminal_path, "--eval", f"addpath('./octave_script'); modelo_fotovoltaico({data.I_SC});"]
 
     try:
-        # Executar o script Octave
         result = subprocess.run(command, capture_output=True, text=True, check=True)
-        print("Saída do Octave:")
-        print(result.stdout)  # Saída do script
+        print("Octave output:")
+        print(result.stdout)  
+
     except subprocess.CalledProcessError as e:
-        print("Erro ao executar o script Octave:")
-        print(e.stderr)  # Exibe mensagens de erro do Octave
+        print("Octave execution failed:")
+        print(e.stderr) 
 
