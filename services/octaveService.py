@@ -1,7 +1,7 @@
 import subprocess
 
 def generateGraphs():# Caminho para o Octave completo (não CLI)
-    octave_terminal_path = "C:/Program Files/GNU Octave/Octave-9.2.0/mingw64/bin/octave.exe"
+    octave_terminal_path = "/usr/bin/octave"
 
     # Caminho para o script Octave
     octave_script_path = "./octave_script/otavio.m"
