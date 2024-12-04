@@ -4,7 +4,7 @@ def generateGraphs(data):
 
     octave_terminal_path = "C:/Program Files/GNU Octave/Octave-9.2.0/mingw64/bin/octave.exe"
 
-    command = [octave_terminal_path, "--eval", f"addpath('./octave_script'); modelo_fotovoltaico({data.I_SC}, {data.V_dc});"]
+    command = [octave_terminal_path, "--eval", f"addpath('./octave_script'); modelo_fotovoltaico({data.I_SC}, {data.V_dc}, {data.R_sh}, {data.T}, {data.J_0});"]
 
     try:
         result = subprocess.run(command, capture_output=True, text=True, check=True)
