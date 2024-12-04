@@ -1,4 +1,6 @@
 # Solar Cell Simulator Backend
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) ![Octave](https://img.shields.io/badge/OCTAVE-darkblue?style=for-the-badge&logo=octave&logoColor=fcd683)
+
 
 I was responsible for the **backend** of this project, which manages the computational processing for a photovoltaic cell simulator. The system is designed to analyze I-V (current-voltage) and P-V (power-voltage) curves under varying operational conditions. My work included developing the backend and integrating it with **GNU Octave**, ensuring efficient data processing, mathematical computation, and seamless communication with the frontend for user visualization.
 
@@ -18,16 +20,15 @@ The backend integrates with [GNU Octave](https://www.gnu.org/software/octave/), 
 
 - **Perform Complex Calculations:** Based on the single-diode photovoltaic cell model, Octave computes key parameters like photocurrent, saturation current, and power under varying environmental conditions.
 - **Generate High-Quality Graphs:** Produces detailed I-V and P-V curves for both different irradiances and temperatures. These graphs are stored as PNG files for visualization.
-- **Automate Mathematical Processing:** Ensures efficient and precise calculations, leveraging Octave's matrix operations and scientific libraries.
 
 ## Key Backend Features
 
 - **FastAPI for High-Performance APIs:** Enables efficient communication between the frontend and Octave scripts.
 - **Octave Script Invocation:** Uses Python's `subprocess` to dynamically execute Octave functions based on user inputs.
-- **Static Graph Storage:** All graphs are stored in a dedicated directory (`static/`) to maintain accessibility and organization.
 
-## Repository Links
+## AWS EC2
 
-- **Backend Repository:** [Solar Cell Simulator Backend](https://github.com/Gab-Mello/School-work-octave)
+During development, the backend was hosted on an **AWS EC2** instance to facilitate testing and ensure reliable access. This temporary setup allowed seamless interaction between the backend and the frontend while validating the system's functionality.
 
+---
 Feel free to explore the repository to view the code and understand how the backend and Octave integration work in detail.
