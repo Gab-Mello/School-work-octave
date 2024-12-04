@@ -74,4 +74,53 @@ function modelo_fotovoltaico(I_SC, V_dc, R_sh, T, J_0)
     grid on;
     legend(legend_entries);
     print('static/curva_PV_irradiancia.png', '-dpng', '-r300'); % Salvar gráfico
+
+    % Curvas para diferentes temperaturas
+    temperatures = [273.15 + 25, 273.15 + 35, 273.15 + 45, 273.15 + 55]; % Temperaturas em K
+
+    % Gráfico I-V para diferentes temperaturas
+    figure('visible', 'off');
+    hold on;
+    legend_entries = {};
+
+    for T = temperatures
+        I_ph = (I_SC + J_0 * (T - T_ref)) * (G_ref / G_ref);
+        I_0 = I_00 * (T / T_ref)^3 * exp(-q * 1.12 / (n * k) * (1 / T - 1 / T_ref));
+        I = I_ph - I_0 * (exp((q * V) / (n * k * T)) - 1) - V / R_sh;
+        I(I < 0) = NaN;
+
+        plot(V, I);
+        legend_entries = [legend_entries, {['T = ' num2str(T - 273.15) ' °C']}];
+    end
+
+    xlabel('Tensão (V)');
+    ylabel('Corrente (I)');
+    title('Curva I-V para Diferentes Temperaturas');
+    grid on;
+    legend(legend_entries);
+    print('static/curva_IV_temperatura.png', '-dpng', '-r300');
+
+    % Gráfico P-V para diferentes temperaturas
+    figure('visible', 'off');
+    hold on;
+    legend_entries = {};
+
+    for T = temperatures
+        I_ph = (I_SC + J_0 * (T - T_ref)) * (G_ref / G_ref);
+        I_0 = I_00 * (T / T_ref)^3 * exp(-q * 1.12 / (n * k) * (1 / T - 1 / T_ref));
+        I = I_ph - I_0 * (exp((q * V) / (n * k * T)) - 1) - V / R_sh;
+        P = V .* I;
+        I(I < 0) = NaN;
+        P(P < 0) = NaN;
+
+        plot(V, P);
+        legend_entries = [legend_entries, {['T = ' num2str(T - 273.15) ' °C']}];
+    end
+
+    xlabel('Tensão (V)');
+    ylabel('Potência (P)');
+    title('Curva P-V para Diferentes Temperaturas');
+    grid on;
+    legend(legend_entries);
+    print('static/curva_PV_temperatura.png', '-dpng', '-r300');
 end
