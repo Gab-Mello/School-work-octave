@@ -1,9 +1,10 @@
-function modelo_fotovoltaico(I_SC)
+function modelo_fotovoltaico(I_SC, V_dc)
     % Criar a pasta 'static' se necessário
     if ~exist('static', 'dir')
         mkdir('static');
     end
-    disp(sprintf('O valor de I_SC eh: %d', I_SC));
+    
+
     % Constantes
     q = 1.60217662 * 10^(-19);  % Carga elementar (C)
     k = 1.38064852 * 10^(-23);  % Constante de Boltzmann (J/K)
@@ -11,7 +12,7 @@ function modelo_fotovoltaico(I_SC)
     T_0 = 298.15;                % Temperatura de referência (K)
     I_00 = 1.2799e-8;            % Corrente de saturação inicial (A)
     R_sh = 100;                  % Resistência de shunt (Ω)
-    V_dc = 0.72;                 % Tensão de circuito aberto (V)
+    
 
     % Tensão (V)
     V = linspace(0, V_dc, 100);  % Varia de 0 a 0.72V
